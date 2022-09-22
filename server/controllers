@@ -1,0 +1,14 @@
+const knex = require("knex")(
+  require("./knexfile")[process.env.NODE_ENV || "development"]
+);
+
+function getAllMovies() {
+    return knex.select("*").from("movies");
+}
+
+function getMovieById(id) {
+  return knex('movies').where({ id }).select('*');
+}
+
+
+module.exports = { getAllMovies, getMovieById };
